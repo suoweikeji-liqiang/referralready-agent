@@ -32,6 +32,8 @@ ReferralReady exposes six tools:
 5. `build_referral_packet(patient_id, specialty, referral_reason)`
 6. `generate_care_coordination_tasks(patient_id, specialty)`
 
+When Prompt Opinion passes SHARP-style context headers, `patient_id` can be omitted and resolved from the incoming request.
+
 ## Quick start
 
 ```bash
@@ -57,6 +59,18 @@ Run as an MCP server:
 
 ```bash
 python -m app.mcp_server
+```
+
+Run in deployment-style HTTP mode:
+
+```bash
+python -m app.mcp_server --transport streamable-http --host 0.0.0.0 --port 8000 --stateless-http
+```
+
+Health check:
+
+```bash
+curl http://127.0.0.1:8000/healthz
 ```
 
 ## Example prompt for Prompt Opinion
@@ -92,3 +106,5 @@ ReferralReady includes an internal scorecard for the Agents Assemble judging rub
 - runs multiple judge personas with controlled artifact context
 - averages scores across `AI Factor`, `Potential Impact`, and `Feasibility`
 - highlights the highest-priority submission gaps before we stop iterating
+
+For Marketplace publication and Prompt Opinion proof capture, see [docs/prompt_opinion_publish_checklist.md](D:/study/42.hacson/referralready-agent/referralready-agent/docs/prompt_opinion_publish_checklist.md).

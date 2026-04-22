@@ -6,7 +6,11 @@ The Prompt Opinion agent can use these MCP tool outputs as context for final wor
 from __future__ import annotations
 from datetime import date, datetime, timedelta
 from typing import Iterable
+
+from mcp.server.fastmcp import Context
+
 from app.data_store import load_checklist, load_patient, normalize_specialty
+from app.platform_context import resolve_patient_id
 from app.safety import append_safety_note
 
 def _parse_date(value: str) -> date:
@@ -19,7 +23,8 @@ def _latest_date(observations: Iterable[dict]) -> date | None:
         except Exception: pass
     return max(dates) if dates else None
 
-def get_patient_snapshot(patient_id: str) -> dict:
+def get_patient_snapshot(patient_id: str | None, ctx: Context | None = None) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     record = load_patient(patient_id)
     patient = record["patient"]
     active_conditions = [
@@ -40,7 +45,13 @@ def get_patient_snapshot(patient_id: str) -> dict:
         "available_document_count": len(record.get("documents", [])),
     }
 
-def get_recent_clinical_signals(patient_id: str, specialty: str, lookback_days: int = 180) -> dict:
+def get_recent_clinical_signals(
+    patient_id: str | None,
+    specialty: str,
+    lookback_days: int = 180,
+    ctx: Context | None = None,
+) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     record = load_patient(patient_id)
     normalized = normalize_specialty(specialty)
     observations = record.get("observations", [])
@@ -64,7 +75,8 @@ def get_recent_clinical_signals(patient_id: str, specialty: str, lookback_days: 
         grouped.setdefault(obs.get("name", "unknown"), []).append(obs)
     return {"patient_id": patient_id, "specialty": normalized, "lookback_days": lookback_days, "reference_date": reference.isoformat() if reference else None, "signals": results, "grouped_by_name": grouped}
 
-def get_medication_context(patient_id: str) -> dict:
+def get_medication_context(patient_id: str | None, ctx: Context | None = None) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     record = load_patient(patient_id)
     active = [m for m in record.get("medications", []) if m.get("status") == "active"]
     inactive = [m for m in record.get("medications", []) if m.get("status") != "active"]
@@ -102,7 +114,8 @@ def _conditions_matching(record: dict, names: list[str]) -> list[dict]:
             matches.append(condition)
     return matches
 
-def check_referral_completeness(patient_id: str, specialty: str) -> dict:
+def check_referral_completeness(patient_id: str | None, specialty: str, ctx: Context | None = None) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     record = load_patient(patient_id)
     normalized = normalize_specialty(specialty)
     checklist = load_checklist(normalized)
@@ -123,7 +136,12 @@ def check_referral_completeness(patient_id: str, specialty: str) -> dict:
         (present if ok else missing).append(result)
     return {"patient_id": patient_id, "specialty": normalized, "present": present, "missing": missing, "completion_rate": round(len(present) / max(1, len(present)+len(missing)), 3), "human_review_required": True}
 
-def generate_care_coordination_tasks(patient_id: str, specialty: str) -> dict:
+def generate_care_coordination_tasks(
+    patient_id: str | None,
+    specialty: str,
+    ctx: Context | None = None,
+) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     completeness = check_referral_completeness(patient_id, specialty)
     tasks = []
     for item in completeness["missing"]:
@@ -137,7 +155,13 @@ def _format_observation(obs: dict) -> str:
     interp = f" ({obs.get('interpretation')})" if obs.get("interpretation") else ""
     return f"{obs.get('date')}: {obs.get('name')} = {obs.get('value')} {obs.get('unit', '')}{interp}".strip()
 
-def build_referral_packet(patient_id: str, specialty: str, referral_reason: str | None = None) -> dict:
+def build_referral_packet(
+    patient_id: str | None,
+    specialty: str,
+    referral_reason: str | None = None,
+    ctx: Context | None = None,
+) -> dict:
+    patient_id = resolve_patient_id(patient_id, ctx)
     snapshot = get_patient_snapshot(patient_id)
     signals = get_recent_clinical_signals(patient_id, specialty)
     meds = get_medication_context(patient_id)
