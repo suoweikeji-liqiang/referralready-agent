@@ -1,0 +1,154 @@
+{
+  "patient_id": "SYN-CKD-004",
+  "patient": {
+    "id": "SYN-CKD-004",
+    "synthetic": true,
+    "age": 63,
+    "sex": "female",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Nephrology referral for progressive CKD review with complete supporting packet in a synthetic record.",
+  "conditions": [
+    {
+      "code": "E11",
+      "display": "Type 2 diabetes mellitus",
+      "status": "active",
+      "onset": "2015"
+    },
+    {
+      "code": "I10",
+      "display": "Essential hypertension",
+      "status": "active",
+      "onset": "2010"
+    },
+    {
+      "code": "N18.3",
+      "display": "Chronic kidney disease stage 3 risk",
+      "status": "active",
+      "onset": "2025"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-04-15",
+      "type": "primary care follow-up",
+      "summary": "Synthetic PCP note requested nephrology review with complete referral packet."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2026-01-10",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 58,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "low",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 52,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "low",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-01-10",
+      "category": "lab",
+      "name": "Creatinine",
+      "loinc": "2160-0",
+      "value": 1.2,
+      "unit": "mg/dL",
+      "interpretation": "borderline",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "category": "lab",
+      "name": "Creatinine",
+      "loinc": "2160-0",
+      "value": 1.4,
+      "unit": "mg/dL",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "category": "lab",
+      "name": "Urine albumin-creatinine ratio",
+      "loinc": "9318-7",
+      "value": 86,
+      "unit": "mg/g",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-02-05",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "136/82",
+      "unit": "mmHg",
+      "interpretation": "borderline",
+      "specialties": [
+        "nephrology",
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "132/78",
+      "unit": "mmHg",
+      "interpretation": "normal",
+      "specialties": [
+        "nephrology",
+        "cardiology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Losartan",
+      "status": "active",
+      "indication": "hypertension",
+      "last_changed": "2026-01-20",
+      "notes": "Medication reconciliation completed; adherence confirmed in synthetic chart."
+    },
+    {
+      "name": "Metformin",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2025-11-01",
+      "notes": "Active therapy documented."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-04-12",
+      "type": "imaging",
+      "title": "Renal ultrasound",
+      "summary": "Synthetic renal ultrasound report showed no hydronephrosis."
+    },
+    {
+      "date": "2026-04-15",
+      "type": "primary care note",
+      "title": "Nephrology referral request",
+      "summary": "PCP summarized declining kidney function trend and attached required supporting data."
+    }
+  ]
+}

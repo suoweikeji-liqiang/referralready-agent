@@ -32,3 +32,4 @@ python -m app.mcp_server
 - [ ] Demo uses synthetic patient IDs
 - [ ] Video is under 3 minutes
 - [ ] Safety boundary is stated clearly
+- [ ] Internal scorecard reviewed with `python scripts/score_submission.py`

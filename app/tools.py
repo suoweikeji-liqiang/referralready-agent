@@ -161,19 +161,19 @@ def build_referral_packet(patient_id: str, specialty: str, referral_reason: str 
     active_meds = meds.get("active_medications", [])
     if active_meds:
         for med in active_meds:
-            notes = f" — {med.get('notes')}" if med.get("notes") else ""
+            notes = f" - {med.get('notes')}" if med.get("notes") else ""
             lines.append(f"- {med.get('name')} for {med.get('indication')}{notes}")
     else:
         lines.append("- No active medications documented in synthetic record.")
     lines += ["", "## Missing Information Before Referral"]
     if completeness["missing"]:
         for item in completeness["missing"]:
-            lines.append(f"- {item.get('label')} — {item.get('why_it_matters')}")
+            lines.append(f"- {item.get('label')} - {item.get('why_it_matters')}")
     else:
         lines.append("- No checklist gaps detected in the synthetic record.")
     lines += ["", "## Care Coordinator Tasks"]
     for idx, task in enumerate(tasks["tasks"], start=1):
-        lines.append(f"{idx}. {task['task']} ({task['priority']} priority) — {task['reason']}")
+        lines.append(f"{idx}. {task['task']} ({task['priority']} priority) - {task['reason']}")
     lines += ["", "## FHIR-like Evidence References", f"- Conditions reviewed: {len(snapshot.get('active_conditions', []))}", f"- Clinical signals reviewed: {len(signals.get('signals', []))}", f"- Active medications reviewed: {len(active_meds)}", f"- Completeness rate: {completeness['completion_rate'] * 100:.0f}%"]
     markdown = append_safety_note("\n".join(lines))
     return {"patient_id": patient_id, "specialty": signals["specialty"], "referral_reason": reason, "completion_rate": completeness["completion_rate"], "missing_count": len(completeness["missing"]), "markdown": markdown, "human_review_required": True}

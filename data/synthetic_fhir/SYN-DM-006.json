@@ -1,0 +1,112 @@
+{
+  "patient_id": "SYN-DM-006",
+  "patient": {
+    "id": "SYN-DM-006",
+    "synthetic": true,
+    "age": 39,
+    "sex": "female",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Endocrinology referral for persistent hyperglycemia with complete medication and metabolic context in a synthetic record.",
+  "conditions": [
+    {
+      "code": "E11",
+      "display": "Type 2 diabetes mellitus",
+      "status": "active",
+      "onset": "2021"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-04-06",
+      "type": "primary care follow-up",
+      "summary": "Synthetic PCP note requested endocrinology review after repeated A1c elevation."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2025-12-12",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 8.5,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 8.1,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "category": "lab",
+      "name": "Fasting glucose",
+      "loinc": "1558-6",
+      "value": 166,
+      "unit": "mg/dL",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 96,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "normal",
+      "specialties": [
+        "endocrinology",
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-04-04",
+      "category": "vital",
+      "name": "BMI",
+      "value": 31.8,
+      "unit": "kg/m2",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Metformin",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2025-10-01",
+      "notes": "Medication adherence reviewed; titration plan discussed in synthetic chart."
+    },
+    {
+      "name": "Tirzepatide",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2026-03-15",
+      "notes": "Active medication history documented."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-04-06",
+      "type": "primary care note",
+      "title": "Endocrinology referral request",
+      "summary": "Synthetic note summarized repeated A1c elevation, fasting glucose, BMI, and medication history."
+    }
+  ]
+}

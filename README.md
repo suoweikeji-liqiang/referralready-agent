@@ -15,8 +15,11 @@ Specialty referrals are often delayed because key labs, medication context, imag
 | Patient ID | Scenario | Specialty |
 |---|---|---|
 | `SYN-CKD-001` | Diabetes + hypertension + declining eGFR | Nephrology |
+| `SYN-CKD-004` | More complete CKD referral packet with UACR and renal imaging | Nephrology |
 | `SYN-HF-002` | Heart failure symptoms + elevated BNP + ED visit | Cardiology |
+| `SYN-HF-005` | More complete cardiology packet with echo and medication reconciliation | Cardiology |
 | `SYN-DM-003` | Poor glycemic control + medication changes | Endocrinology |
+| `SYN-DM-006` | More complete endocrinology packet with metabolic and medication context | Endocrinology |
 
 ## MCP tools
 
@@ -42,6 +45,12 @@ Run tests:
 
 ```bash
 pytest -q
+```
+
+Run the internal competition scorecard:
+
+```bash
+python scripts/score_submission.py
 ```
 
 Run as an MCP server:
@@ -74,3 +83,12 @@ referralready-agent/
 **Title:** ReferralReady Agent  
 **Tagline:** FHIR-aware referral packet generation for safer specialist handoffs.  
 **Built with:** MCP, Python, synthetic FHIR-like data, Prompt Opinion, LLM summarization.
+
+## Competition readiness workflow
+
+ReferralReady includes an internal scorecard for the Agents Assemble judging rubric. The scorecard:
+
+- checks Stage 1 readiness blockers separately from Stage 2 scoring
+- runs multiple judge personas with controlled artifact context
+- averages scores across `AI Factor`, `Potential Impact`, and `Feasibility`
+- highlights the highest-priority submission gaps before we stop iterating

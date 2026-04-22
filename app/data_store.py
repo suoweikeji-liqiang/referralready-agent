@@ -5,7 +5,7 @@ from functools import lru_cache
 from pathlib import Path
 from typing import Any
 from app.config import DATA_DIR
-from app.safety import assert_synthetic_patient
+from app.safety import assert_synthetic_patient, validate_patient_record
 
 class DataNotFoundError(FileNotFoundError):
     """Raised when a requested synthetic patient or checklist does not exist."""
@@ -28,6 +28,7 @@ def load_patient(patient_id: str) -> dict[str, Any]:
         raise DataNotFoundError(f"Unknown patient_id: {patient_id}")
     record = _json_load(str(path))
     assert_synthetic_patient(record)
+    validate_patient_record(record)
     return record
 
 @lru_cache(maxsize=16)

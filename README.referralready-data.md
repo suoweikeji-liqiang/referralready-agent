@@ -33,13 +33,16 @@ For this project, the safest and most controllable approach is:
 
 ## 3. Current Local Demo Data
 
-The initial repository includes three synthetic patient scenarios:
+The repository currently includes six synthetic patient scenarios:
 
 ```text
 data/synthetic_fhir/
   SYN-CKD-001.json
+  SYN-CKD-004.json
   SYN-HF-002.json
+  SYN-HF-005.json
   SYN-DM-003.json
+  SYN-DM-006.json
 ```
 
 ### Patient Scenarios
@@ -47,8 +50,11 @@ data/synthetic_fhir/
 | Patient ID | Scenario | Referral Specialty |
 |---|---|---|
 | `SYN-CKD-001` | Diabetes + hypertension + declining kidney function | Nephrology |
+| `SYN-CKD-004` | More complete CKD packet with UACR and renal imaging | Nephrology |
 | `SYN-HF-002` | Heart failure symptoms + elevated BNP + recent acute care | Cardiology |
+| `SYN-HF-005` | More complete cardiology packet with echo and medication reconciliation | Cardiology |
 | `SYN-DM-003` | Poor glycemic control + elevated A1c + medication context | Endocrinology |
+| `SYN-DM-006` | More complete endocrinology packet with weight, kidney function, and adherence context | Endocrinology |
 
 These records are synthetic demo records. They are not derived from real patients.
 
@@ -226,7 +232,7 @@ Suggested workflow:
 
 Use this in the Devpost submission or project README:
 
-> ReferralReady uses synthetic FHIR-like patient records created specifically for this hackathon demo. The current demo includes three synthetic referral scenarios: nephrology, cardiology, and endocrinology. These records are not derived from real patients and contain no PHI. For future expansion, ReferralReady can ingest Synthea-generated HL7 FHIR R4 records to test the workflow at larger scale.
+> ReferralReady uses synthetic FHIR-like patient records created specifically for this hackathon demo. The current demo includes multiple synthetic referral scenarios across nephrology, cardiology, and endocrinology, including both incomplete and more complete referral packets. These records are not derived from real patients and contain no PHI. For future expansion, ReferralReady can ingest Synthea-generated HL7 FHIR R4 records to test the workflow at larger scale.
 
 ---
 

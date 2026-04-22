@@ -1,0 +1,99 @@
+{
+  "patient_id": "SYN-HF-005",
+  "patient": {
+    "id": "SYN-HF-005",
+    "synthetic": true,
+    "age": 69,
+    "sex": "male",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Cardiology referral for worsening exertional dyspnea in a synthetic patient with supporting imaging and medication reconciliation.",
+  "conditions": [
+    {
+      "code": "I50",
+      "display": "Heart failure risk",
+      "status": "active",
+      "onset": "2026"
+    },
+    {
+      "code": "I10",
+      "display": "Essential hypertension",
+      "status": "active",
+      "onset": "2011"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-04-08",
+      "type": "primary care follow-up",
+      "summary": "Synthetic PCP note documented dyspnea and requested cardiology review."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2026-04-07",
+      "category": "lab",
+      "name": "BNP",
+      "loinc": "30934-4",
+      "value": 510,
+      "unit": "pg/mL",
+      "interpretation": "high",
+      "specialties": [
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "category": "diagnostic",
+      "name": "ECG summary",
+      "value": "sinus rhythm with left ventricular hypertrophy pattern",
+      "unit": "text",
+      "interpretation": "abnormal",
+      "specialties": [
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "148/84",
+      "unit": "mmHg",
+      "interpretation": "high",
+      "specialties": [
+        "cardiology",
+        "nephrology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Furosemide",
+      "status": "active",
+      "indication": "volume symptoms",
+      "last_changed": "2026-04-07",
+      "notes": "Outpatient plan reviewed and medication reconciliation completed in synthetic chart."
+    },
+    {
+      "name": "Carvedilol",
+      "status": "active",
+      "indication": "cardiovascular risk",
+      "last_changed": "2026-04-07",
+      "notes": "Active medication list confirmed."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-04-08",
+      "type": "primary care note",
+      "title": "Dyspnea referral request",
+      "summary": "Synthetic note documents exertional dyspnea and lower extremity edema."
+    },
+    {
+      "date": "2026-04-07",
+      "type": "imaging",
+      "title": "Echocardiogram",
+      "summary": "Synthetic echo summary included reduced ejection fraction context for specialist review."
+    }
+  ]
+}
