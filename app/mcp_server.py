@@ -26,9 +26,20 @@ from app.tools import (
 )
 
 
-PROMPTOPINION_EXPERIMENTAL_CAPABILITIES = {
-    PROMPTOPINION_FHIR_EXTENSION_URI: {}
+PROMPTOPINION_EXTENSION_NAME = "ai.promptopinion/fhir-context"
+PROMPTOPINION_FHIR_SCOPES = [
+    {"name": "patient/Patient.rs", "required": True},
+    {"name": "patient/Condition.rs"},
+    {"name": "patient/Observation.rs"},
+    {"name": "patient/MedicationRequest.rs"},
+    {"name": "patient/Encounter.rs"},
+    {"name": "patient/DocumentReference.rs"},
+    {"name": "patient/DiagnosticReport.rs"},
+]
+PROMPTOPINION_EXTENSION_PAYLOAD = {
+    "scopes": PROMPTOPINION_FHIR_SCOPES
 }
+PROMPTOPINION_EXPERIMENTAL_CAPABILITIES = {PROMPTOPINION_FHIR_EXTENSION_URI: {}}
 
 
 def _attach_promptopinion_capabilities(mcp: FastMCP) -> None:
@@ -38,10 +49,18 @@ def _attach_promptopinion_capabilities(mcp: FastMCP) -> None:
         merged_capabilities = dict(PROMPTOPINION_EXPERIMENTAL_CAPABILITIES)
         if experimental_capabilities:
             merged_capabilities.update(experimental_capabilities)
-        return original_create_initialization_options(
+        init_options = original_create_initialization_options(
             notification_options=notification_options,
             experimental_capabilities=merged_capabilities,
         )
+        setattr(
+            init_options.capabilities,
+            "extensions",
+            {
+                PROMPTOPINION_EXTENSION_NAME: PROMPTOPINION_EXTENSION_PAYLOAD,
+            },
+        )
+        return init_options
 
     mcp._mcp_server.create_initialization_options = create_initialization_options
 

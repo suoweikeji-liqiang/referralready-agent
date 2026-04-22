@@ -68,4 +68,6 @@ def test_server_declares_prompt_opinion_fhir_extension_capability():
 
     init_options = server._mcp_server.create_initialization_options()
 
-    assert "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context" in init_options.capabilities.experimental
+    assert hasattr(init_options.capabilities, "extensions")
+    assert "ai.promptopinion/fhir-context" in init_options.capabilities.extensions
+    assert init_options.capabilities.extensions["ai.promptopinion/fhir-context"]["scopes"]
