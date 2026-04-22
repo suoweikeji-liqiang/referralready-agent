@@ -1,0 +1,76 @@
+{
+  "specialty": "cardiology",
+  "description": "Synthetic checklist for cardiology referrals. Not a clinical guideline.",
+  "required_items": [
+    {
+      "id": "symptom_encounter",
+      "type": "document",
+      "label": "Recent symptom or encounter note",
+      "names": [
+        "dyspnea",
+        "edema",
+        "chest pain",
+        "emergency note",
+        "primary care note"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "The specialist needs a clear reason for referral and symptom context."
+    },
+    {
+      "id": "bnp_or_marker",
+      "type": "observation",
+      "label": "BNP, troponin, or relevant cardiac marker",
+      "names": [
+        "BNP",
+        "Troponin"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Relevant markers can support triage and review."
+    },
+    {
+      "id": "ecg_summary",
+      "type": "observation",
+      "label": "ECG summary",
+      "names": [
+        "ECG summary"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "ECG context is commonly needed for cardiology referrals."
+    },
+    {
+      "id": "bp_context",
+      "type": "observation",
+      "label": "Recent blood pressure context",
+      "names": [
+        "Blood pressure"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Blood pressure context helps frame cardiovascular risk."
+    },
+    {
+      "id": "med_reconciliation",
+      "type": "medication_note",
+      "label": "Medication adherence or reconciliation note",
+      "terms": [
+        "adherence",
+        "reconciliation",
+        "outpatient plan"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Medication reconciliation reduces handoff ambiguity."
+    },
+    {
+      "id": "echo_or_imaging",
+      "type": "document",
+      "label": "Echocardiogram or relevant imaging result",
+      "names": [
+        "echocardiogram",
+        "echo",
+        "chest x-ray",
+        "imaging"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Relevant imaging supports triage and prevents repeat requests."
+    }
+  ]
+}

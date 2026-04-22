@@ -1,0 +1,70 @@
+{
+  "specialty": "nephrology",
+  "description": "Synthetic checklist for kidney-related referrals. Not a clinical guideline.",
+  "required_items": [
+    {
+      "id": "egfr_trend",
+      "type": "observation",
+      "label": "eGFR trend over at least 90 days",
+      "names": [
+        "eGFR"
+      ],
+      "minimum_count": 2,
+      "why_it_matters": "Specialists need trend context rather than a single kidney function value."
+    },
+    {
+      "id": "creatinine_trend",
+      "type": "observation",
+      "label": "Creatinine trend",
+      "names": [
+        "Creatinine"
+      ],
+      "minimum_count": 2,
+      "why_it_matters": "Creatinine trend helps frame the kidney function trajectory."
+    },
+    {
+      "id": "urine_acr",
+      "type": "observation",
+      "label": "Urine albumin-creatinine ratio",
+      "names": [
+        "Urine albumin-creatinine ratio",
+        "UACR"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Albuminuria context is commonly useful for kidney referral review."
+    },
+    {
+      "id": "bp_trend",
+      "type": "observation",
+      "label": "Recent blood pressure trend",
+      "names": [
+        "Blood pressure"
+      ],
+      "minimum_count": 2,
+      "why_it_matters": "Blood pressure context helps reviewers understand kidney risk factors."
+    },
+    {
+      "id": "renal_ultrasound",
+      "type": "document",
+      "label": "Renal ultrasound or relevant kidney imaging",
+      "names": [
+        "renal ultrasound",
+        "kidney ultrasound",
+        "renal imaging"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Relevant imaging can prevent back-and-forth before specialty review."
+    },
+    {
+      "id": "med_adherence",
+      "type": "medication_note",
+      "label": "Medication adherence or reconciliation note",
+      "terms": [
+        "adherence",
+        "reconciliation"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Medication context is needed to interpret risk factors and current management."
+    }
+  ]
+}

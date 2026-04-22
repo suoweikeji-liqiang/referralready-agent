@@ -1,0 +1,140 @@
+{
+  "patient_id": "SYN-HF-002",
+  "patient": {
+    "id": "SYN-HF-002",
+    "synthetic": true,
+    "age": 72,
+    "sex": "female",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Cardiology referral after synthetic emergency visit for dyspnea and elevated BNP.",
+  "conditions": [
+    {
+      "code": "I50",
+      "display": "Heart failure risk",
+      "status": "active",
+      "onset": "2026"
+    },
+    {
+      "code": "I10",
+      "display": "Essential hypertension",
+      "status": "active",
+      "onset": "2012"
+    },
+    {
+      "code": "E78",
+      "display": "Hyperlipidemia",
+      "status": "active",
+      "onset": "2018"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-04-02",
+      "type": "emergency department",
+      "summary": "Synthetic ED visit for dyspnea on exertion and mild lower extremity edema."
+    },
+    {
+      "date": "2026-04-05",
+      "type": "primary care follow-up",
+      "summary": "PCP requested cardiology referral packet and medication reconciliation."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2026-04-02",
+      "category": "lab",
+      "name": "BNP",
+      "loinc": "30934-4",
+      "value": 640,
+      "unit": "pg/mL",
+      "interpretation": "high",
+      "specialties": [
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "162/88",
+      "unit": "mmHg",
+      "interpretation": "high",
+      "specialties": [
+        "cardiology",
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "category": "vital",
+      "name": "Oxygen saturation",
+      "value": 94,
+      "unit": "%",
+      "interpretation": "borderline",
+      "specialties": [
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-03-01",
+      "category": "lab",
+      "name": "LDL cholesterol",
+      "loinc": "13457-7",
+      "value": 138,
+      "unit": "mg/dL",
+      "interpretation": "high",
+      "specialties": [
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-04-02",
+      "category": "diagnostic",
+      "name": "ECG summary",
+      "value": "sinus rhythm with nonspecific ST-T changes",
+      "unit": "text",
+      "interpretation": "needs review",
+      "specialties": [
+        "cardiology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Amlodipine",
+      "status": "active",
+      "indication": "hypertension",
+      "last_changed": "2025-07-11",
+      "notes": "Active in synthetic medication list."
+    },
+    {
+      "name": "Atorvastatin",
+      "status": "active",
+      "indication": "hyperlipidemia",
+      "last_changed": "2025-08-01",
+      "notes": "Medication adherence discussed at PCP follow-up."
+    },
+    {
+      "name": "Furosemide",
+      "status": "inactive",
+      "indication": "fluid symptoms",
+      "last_changed": "2026-04-02",
+      "notes": "One-time ED dose documented; outpatient plan not documented."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-04-02",
+      "type": "emergency note",
+      "title": "ED dyspnea note",
+      "summary": "Synthetic note lists dyspnea, edema, and elevated BNP."
+    },
+    {
+      "date": "2026-04-02",
+      "type": "imaging",
+      "title": "Chest X-ray",
+      "summary": "Mild pulmonary vascular congestion in synthetic imaging report."
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "specialty": "endocrinology",
+  "description": "Synthetic checklist for endocrinology referrals. Not a clinical guideline.",
+  "required_items": [
+    {
+      "id": "a1c_trend",
+      "type": "observation",
+      "label": "A1c trend over time",
+      "names": [
+        "A1c"
+      ],
+      "minimum_count": 2,
+      "why_it_matters": "A trend helps the specialist understand glycemic trajectory."
+    },
+    {
+      "id": "fasting_glucose",
+      "type": "observation",
+      "label": "Recent fasting glucose",
+      "names": [
+        "Fasting glucose"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Recent glucose context helps frame referral urgency and education needs."
+    },
+    {
+      "id": "kidney_function",
+      "type": "observation",
+      "label": "Recent kidney function context",
+      "names": [
+        "eGFR",
+        "Creatinine"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Kidney function context can affect medication review and referral planning."
+    },
+    {
+      "id": "medication_history",
+      "type": "medication_note",
+      "label": "Medication history and adherence context",
+      "terms": [
+        "adherence",
+        "missed",
+        "prior authorization",
+        "titration"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Medication history helps the specialist avoid duplicative questions."
+    },
+    {
+      "id": "weight_or_bmi",
+      "type": "observation",
+      "label": "Weight or BMI context",
+      "names": [
+        "BMI",
+        "Weight"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "Weight context may be relevant to metabolic referral review."
+    },
+    {
+      "id": "diabetes_condition",
+      "type": "condition",
+      "label": "Diabetes diagnosis documented",
+      "names": [
+        "diabetes",
+        "E11"
+      ],
+      "minimum_count": 1,
+      "why_it_matters": "The referral packet should clearly state the condition under review."
+    }
+  ]
+}

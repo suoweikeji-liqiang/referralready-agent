@@ -1,0 +1,29 @@
+{
+  "name": "ReferralReady Agent",
+  "description": "MCP-powered referral packet generation from synthetic FHIR-like data for clinician review.",
+  "type": "mcp_server",
+  "command": "python",
+  "args": [
+    "-m",
+    "app.mcp_server"
+  ],
+  "tools": [
+    "get_patient_snapshot",
+    "get_recent_clinical_signals",
+    "get_medication_context",
+    "check_referral_completeness",
+    "build_referral_packet",
+    "generate_care_coordination_tasks"
+  ],
+  "sample_prompts": [
+    "Prepare a nephrology referral packet for synthetic patient SYN-CKD-001.",
+    "Check cardiology referral completeness for synthetic patient SYN-HF-002.",
+    "Generate care coordination tasks for synthetic patient SYN-DM-003 endocrinology referral."
+  ],
+  "safety": {
+    "synthetic_data_only": true,
+    "no_phi": true,
+    "no_diagnosis": true,
+    "human_review_required": true
+  }
+}

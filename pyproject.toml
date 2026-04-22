@@ -1,0 +1,13 @@
+[project]
+name = "referralready-agent"
+version = "0.1.0"
+description = "MCP-powered referral packet agent using synthetic FHIR-like data."
+requires-python = ">=3.10"
+dependencies = ["mcp>=1.0.0", "python-dotenv>=1.0.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0.0"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

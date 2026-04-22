@@ -1,0 +1,185 @@
+{
+  "patient_id": "SYN-CKD-001",
+  "patient": {
+    "id": "SYN-CKD-001",
+    "synthetic": true,
+    "age": 58,
+    "sex": "male",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Progressive decline in kidney function in a synthetic patient with type 2 diabetes and hypertension.",
+  "conditions": [
+    {
+      "code": "E11",
+      "display": "Type 2 diabetes mellitus",
+      "status": "active",
+      "onset": "2016"
+    },
+    {
+      "code": "I10",
+      "display": "Essential hypertension",
+      "status": "active",
+      "onset": "2014"
+    },
+    {
+      "code": "N18",
+      "display": "Chronic kidney disease risk",
+      "status": "active",
+      "onset": "2025"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-03-25",
+      "type": "primary care follow-up",
+      "summary": "PCP noted declining eGFR trend and requested nephrology referral packet."
+    },
+    {
+      "date": "2026-01-12",
+      "type": "diabetes follow-up",
+      "summary": "A1c remained above target in synthetic record."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2025-10-05",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 68,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "borderline",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-01-10",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 54,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "low",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 47,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "low",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2025-10-05",
+      "category": "lab",
+      "name": "Creatinine",
+      "loinc": "2160-0",
+      "value": 1.1,
+      "unit": "mg/dL",
+      "interpretation": "normal",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-01-10",
+      "category": "lab",
+      "name": "Creatinine",
+      "loinc": "2160-0",
+      "value": 1.3,
+      "unit": "mg/dL",
+      "interpretation": "borderline",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "category": "lab",
+      "name": "Creatinine",
+      "loinc": "2160-0",
+      "value": 1.5,
+      "unit": "mg/dL",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 8.4,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology",
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-01-10",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "148/92",
+      "unit": "mmHg",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology",
+        "cardiology"
+      ]
+    },
+    {
+      "date": "2026-03-20",
+      "category": "vital",
+      "name": "Blood pressure",
+      "value": "152/94",
+      "unit": "mmHg",
+      "interpretation": "high",
+      "specialties": [
+        "nephrology",
+        "cardiology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Lisinopril",
+      "status": "active",
+      "indication": "hypertension",
+      "last_changed": "2025-12-01",
+      "notes": "Active ACE inhibitor documented."
+    },
+    {
+      "name": "Metformin",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2024-08-10",
+      "notes": "Adherence not documented in recent notes."
+    },
+    {
+      "name": "Empagliflozin",
+      "status": "inactive",
+      "indication": "type 2 diabetes",
+      "last_changed": "2025-09-15",
+      "notes": "Previously discussed but not clearly started in synthetic chart."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-03-25",
+      "type": "primary care note",
+      "title": "Referral request note",
+      "summary": "PCP requested nephrology review because kidney function appears to be declining."
+    }
+  ]
+}

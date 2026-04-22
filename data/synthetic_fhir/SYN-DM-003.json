@@ -1,0 +1,148 @@
+{
+  "patient_id": "SYN-DM-003",
+  "patient": {
+    "id": "SYN-DM-003",
+    "synthetic": true,
+    "age": 45,
+    "sex": "female",
+    "note": "Synthetic patient generated for hackathon demo. No real PHI."
+  },
+  "referral_reason": "Endocrinology referral for persistent hyperglycemia and medication optimization review in synthetic patient.",
+  "conditions": [
+    {
+      "code": "E11",
+      "display": "Type 2 diabetes mellitus",
+      "status": "active",
+      "onset": "2020"
+    },
+    {
+      "code": "E66",
+      "display": "Obesity",
+      "status": "active",
+      "onset": "2021"
+    }
+  ],
+  "encounters": [
+    {
+      "date": "2026-03-28",
+      "type": "primary care follow-up",
+      "summary": "Synthetic PCP note documents persistent A1c elevation despite medication changes."
+    },
+    {
+      "date": "2026-02-14",
+      "type": "pharmacy call",
+      "summary": "Medication adherence discussed but not fully confirmed."
+    }
+  ],
+  "observations": [
+    {
+      "date": "2025-09-12",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 8.9,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-01-08",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 9.2,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "category": "lab",
+      "name": "A1c",
+      "loinc": "4548-4",
+      "value": 9.1,
+      "unit": "%",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "category": "lab",
+      "name": "Fasting glucose",
+      "loinc": "1558-6",
+      "value": 184,
+      "unit": "mg/dL",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-03-25",
+      "category": "vital",
+      "name": "BMI",
+      "value": 34.2,
+      "unit": "kg/m2",
+      "interpretation": "high",
+      "specialties": [
+        "endocrinology"
+      ]
+    },
+    {
+      "date": "2026-02-01",
+      "category": "lab",
+      "name": "eGFR",
+      "loinc": "33914-3",
+      "value": 92,
+      "unit": "mL/min/1.73m2",
+      "interpretation": "normal",
+      "specialties": [
+        "endocrinology",
+        "nephrology"
+      ]
+    }
+  ],
+  "medications": [
+    {
+      "name": "Metformin",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2024-10-01",
+      "notes": "Medication adherence discussed during pharmacy call; patient reported missed evening doses in synthetic note."
+    },
+    {
+      "name": "Semaglutide",
+      "status": "inactive",
+      "indication": "type 2 diabetes",
+      "last_changed": "2026-01-08",
+      "notes": "Prior authorization pending in synthetic chart."
+    },
+    {
+      "name": "Insulin glargine",
+      "status": "active",
+      "indication": "type 2 diabetes",
+      "last_changed": "2026-03-28",
+      "notes": "Recently started; dose titration instructions not included in referral packet."
+    }
+  ],
+  "documents": [
+    {
+      "date": "2026-03-28",
+      "type": "primary care note",
+      "title": "Diabetes referral request",
+      "summary": "PCP requested endocrinology review for persistent A1c elevation."
+    },
+    {
+      "date": "2026-02-14",
+      "type": "pharmacy note",
+      "title": "Medication adherence call",
+      "summary": "Synthetic call note references missed doses and adherence barriers."
+    }
+  ]
+}
