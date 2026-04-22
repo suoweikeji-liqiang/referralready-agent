@@ -10,7 +10,7 @@ from typing import Iterable
 from mcp.server.fastmcp import Context
 
 from app.data_store import load_checklist, load_patient, normalize_specialty
-from app.platform_context import resolve_patient_id
+from app.platform_context import extract_platform_context, resolve_patient_id
 from app.safety import append_safety_note
 
 def _parse_date(value: str) -> date:
@@ -23,9 +23,13 @@ def _latest_date(observations: Iterable[dict]) -> date | None:
         except Exception: pass
     return max(dates) if dates else None
 
+
+def _load_record(patient_id: str, ctx: Context | None = None) -> dict:
+    return load_patient(patient_id, platform_context=extract_platform_context(ctx))
+
 def get_patient_snapshot(patient_id: str | None, ctx: Context | None = None) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    record = load_patient(patient_id)
+    record = _load_record(patient_id, ctx)
     patient = record["patient"]
     active_conditions = [
         {"display": c["display"], "status": c.get("status", "unknown"), "onset": c.get("onset")}
@@ -52,7 +56,7 @@ def get_recent_clinical_signals(
     ctx: Context | None = None,
 ) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    record = load_patient(patient_id)
+    record = _load_record(patient_id, ctx)
     normalized = normalize_specialty(specialty)
     observations = record.get("observations", [])
     reference = _latest_date(observations)
@@ -77,7 +81,7 @@ def get_recent_clinical_signals(
 
 def get_medication_context(patient_id: str | None, ctx: Context | None = None) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    record = load_patient(patient_id)
+    record = _load_record(patient_id, ctx)
     active = [m for m in record.get("medications", []) if m.get("status") == "active"]
     inactive = [m for m in record.get("medications", []) if m.get("status") != "active"]
     adherence_notes = [m for m in record.get("medications", []) if "adherence" in m.get("notes", "").lower() or "reconciliation" in m.get("notes", "").lower()]
@@ -116,7 +120,7 @@ def _conditions_matching(record: dict, names: list[str]) -> list[dict]:
 
 def check_referral_completeness(patient_id: str | None, specialty: str, ctx: Context | None = None) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    record = load_patient(patient_id)
+    record = _load_record(patient_id, ctx)
     normalized = normalize_specialty(specialty)
     checklist = load_checklist(normalized)
     present, missing = [], []
@@ -142,7 +146,7 @@ def generate_care_coordination_tasks(
     ctx: Context | None = None,
 ) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    completeness = check_referral_completeness(patient_id, specialty)
+    completeness = check_referral_completeness(patient_id, specialty, ctx)
     tasks = []
     for item in completeness["missing"]:
         label = item.get("label", "missing referral element")
@@ -162,11 +166,11 @@ def build_referral_packet(
     ctx: Context | None = None,
 ) -> dict:
     patient_id = resolve_patient_id(patient_id, ctx)
-    snapshot = get_patient_snapshot(patient_id)
-    signals = get_recent_clinical_signals(patient_id, specialty)
-    meds = get_medication_context(patient_id)
-    completeness = check_referral_completeness(patient_id, specialty)
-    tasks = generate_care_coordination_tasks(patient_id, specialty)
+    snapshot = get_patient_snapshot(patient_id, ctx)
+    signals = get_recent_clinical_signals(patient_id, specialty, ctx=ctx)
+    meds = get_medication_context(patient_id, ctx)
+    completeness = check_referral_completeness(patient_id, specialty, ctx)
+    tasks = generate_care_coordination_tasks(patient_id, specialty, ctx)
     reason = referral_reason or snapshot.get("referral_reason") or "Referral reason not specified."
     lines = [f"# {signals['specialty'].title()} Referral Packet", "", "## Referral Reason", reason, "", "## Patient Context", f"- Synthetic patient ID: {patient_id}", f"- Age: {snapshot.get('age')}", f"- Sex: {snapshot.get('sex')}", "", "## Active Conditions"]
     for condition in snapshot.get("active_conditions", []):

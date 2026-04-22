@@ -15,6 +15,7 @@ from starlette.requests import Request
 from starlette.responses import JSONResponse, Response
 
 from app.config import SYNTHETIC_ONLY, ServerRuntimeConfig, get_server_runtime_config
+from app.platform_context import PROMPTOPINION_FHIR_EXTENSION_URI
 from app.tools import (
     build_referral_packet as _build_referral_packet,
     check_referral_completeness as _check_referral_completeness,
@@ -25,6 +26,26 @@ from app.tools import (
 )
 
 
+PROMPTOPINION_EXPERIMENTAL_CAPABILITIES = {
+    PROMPTOPINION_FHIR_EXTENSION_URI: {}
+}
+
+
+def _attach_promptopinion_capabilities(mcp: FastMCP) -> None:
+    original_create_initialization_options = mcp._mcp_server.create_initialization_options
+
+    def create_initialization_options(notification_options=None, experimental_capabilities=None):
+        merged_capabilities = dict(PROMPTOPINION_EXPERIMENTAL_CAPABILITIES)
+        if experimental_capabilities:
+            merged_capabilities.update(experimental_capabilities)
+        return original_create_initialization_options(
+            notification_options=notification_options,
+            experimental_capabilities=merged_capabilities,
+        )
+
+    mcp._mcp_server.create_initialization_options = create_initialization_options
+
+
 def build_mcp_server(config: ServerRuntimeConfig | None = None) -> FastMCP:
     runtime = config or get_server_runtime_config()
     mcp = FastMCP(
@@ -32,7 +53,8 @@ def build_mcp_server(config: ServerRuntimeConfig | None = None) -> FastMCP:
         instructions=(
             "ReferralReady assembles specialist-ready referral packets from synthetic FHIR-like data. "
             "It does not diagnose, recommend treatment, or process real PHI. "
-            "If patient context headers are provided by Prompt Opinion, tools may use them as a patient_id fallback."
+            "If Prompt Opinion provides FHIR context, the server can use patientId, fhirUrl, and fhirToken "
+            "to load synthetic or de-identified patient data from a FHIR server."
         ),
         host=runtime.host,
         port=runtime.port,
@@ -40,6 +62,7 @@ def build_mcp_server(config: ServerRuntimeConfig | None = None) -> FastMCP:
         stateless_http=runtime.stateless_http,
         log_level=runtime.log_level,
     )
+    _attach_promptopinion_capabilities(mcp)
 
     @mcp.custom_route("/healthz", methods=["GET"], include_in_schema=False)
     async def healthz(_: Request) -> Response:
@@ -50,6 +73,7 @@ def build_mcp_server(config: ServerRuntimeConfig | None = None) -> FastMCP:
                 "synthetic_only": SYNTHETIC_ONLY,
                 "streamable_http_path": runtime.streamable_http_path,
                 "stateless_http": runtime.stateless_http,
+                "promptopinion_fhir_extension": PROMPTOPINION_FHIR_EXTENSION_URI,
             }
         )
 

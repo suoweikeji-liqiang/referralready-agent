@@ -61,3 +61,11 @@ def test_streamable_http_app_exposes_healthz_route():
     assert response.status_code == 200
     assert response.json()["status"] == "ok"
     assert response.json()["synthetic_only"] is True
+
+
+def test_server_declares_prompt_opinion_fhir_extension_capability():
+    server = build_mcp_server()
+
+    init_options = server._mcp_server.create_initialization_options()
+
+    assert "https://app.promptopinion.ai/schemas/a2a/v1/fhir-context" in init_options.capabilities.experimental
