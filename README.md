@@ -73,6 +73,12 @@ Health check:
 curl http://127.0.0.1:8000/healthz
 ```
 
+Recommended free hosting path:
+
+- deploy to Render with the included [render.yaml](D:/study/42.hacson/referralready-agent/referralready-agent/render.yaml)
+- follow [docs/render_deploy.md](D:/study/42.hacson/referralready-agent/referralready-agent/docs/render_deploy.md)
+- register the resulting `https://<service>.onrender.com/mcp` endpoint in Prompt Opinion
+
 ## Example prompt for Prompt Opinion
 
 ```text

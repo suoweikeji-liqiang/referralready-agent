@@ -11,6 +11,8 @@ python -m app.mcp_server --transport streamable-http --host 0.0.0.0 --port 8000 
 ```
 
 - Deploy it to a public HTTPS host such as Render, Railway, Fly.io, or Cloud Run
+- Recommended free path for this repo: Render using [render.yaml](D:/study/42.hacson/referralready-agent/referralready-agent/render.yaml)
+- Follow [docs/render_deploy.md](D:/study/42.hacson/referralready-agent/referralready-agent/docs/render_deploy.md) to get the first public URL quickly
 - Verify:
 
 ```bash
